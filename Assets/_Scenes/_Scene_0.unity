@@ -517,6 +517,7 @@ RectTransform:
   m_Children:
   - {fileID: 1532281349}
   - {fileID: 814063812}
+  - {fileID: 1728453572}
   - {fileID: 1915920723}
   - {fileID: 777845089}
   m_Father: {fileID: 0}
@@ -748,17 +749,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uitLevel: {fileID: 1532281350}
   uitShots: {fileID: 814063813}
+  bestShotsText: {fileID: 1728453573}
   castlePos: {x: 50, y: -9.5, z: 0}
   castles:
-  - {fileID: 5026273731198821308, guid: 3bd90f593bbe1f1478746d1168154151, type: 3}
   - {fileID: 5026273731198821308, guid: 0536040f0be509144b0bac07e2818d2a, type: 3}
-  - {fileID: 5026273731198821308, guid: bafaa11ce172eb54081c8e0f71ad791a, type: 3}
-  - {fileID: 5026273731198821308, guid: 92d5382f235206946b06a5335643eb29, type: 3}
-  - {fileID: 5026273731198821308, guid: dfa938b6c01a2f0419699784822aa219, type: 3}
+  - {fileID: 5026273731198821308, guid: b9967e6aaa1079a40a4bb7e9e992c30a, type: 3}
+  - {fileID: 5026273731198821308, guid: b9ba79cfee6d58647a029430ce6bce54, type: 3}
+  - {fileID: 5026273731198821308, guid: 6ed2632e792a9894180c26e7af27b02a, type: 3}
+  - {fileID: 5026273731198821308, guid: f50b277be33315843a74409016bec147, type: 3}
   gameOverScreen: {fileID: 777845088}
   level: 0
   levelMax: 0
   shotsTaken: 0
+  bestShots: 0
   castle: {fileID: 0}
   mode: 0
   showing: Show Slingshot
@@ -1661,6 +1664,85 @@ MonoBehaviour:
   minPos: {x: -20, y: -5, z: -5}
   maxPos: {x: 300, y: 40, z: 5}
   scaleRange: {x: 1, y: 4}
+--- !u!1 &1728453571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728453572}
+  - component: {fileID: 1728453574}
+  - component: {fileID: 1728453573}
+  m_Layer: 5
+  m_Name: UIText_BestShots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1728453572
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728453571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 139652377}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -10, y: -20}
+  m_SizeDelta: {x: 256, y: 32}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &1728453573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728453571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Best Shots: N/A'
+--- !u!222 &1728453574
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728453571}
+  m_CullTransparentMesh: 1
 --- !u!1 &1840955434
 GameObject:
   m_ObjectHideFlags: 0

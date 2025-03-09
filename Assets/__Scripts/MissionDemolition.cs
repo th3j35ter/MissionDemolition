@@ -19,6 +19,7 @@ public class MissionDemolition : MonoBehaviour
     [Header("Inscribed")]
     public Text uitLevel; // uitext_level text
     public Text uitShots; // uitext_shots text
+    public Text bestShotsText;
     public Vector3 castlePos;
     public GameObject[] castles;
     public GameObject gameOverScreen;
@@ -27,6 +28,7 @@ public class MissionDemolition : MonoBehaviour
     public int level;
     public int levelMax;
     public int shotsTaken;
+    public int bestShots;
     public GameObject castle;
     public GameMode mode = GameMode.idle;
     public string showing = "Show Slingshot";
@@ -38,6 +40,8 @@ public class MissionDemolition : MonoBehaviour
         level = 0;
         shotsTaken = 0;
         levelMax = castles.Length;
+
+        bestShots = PlayerPrefs.GetInt("BestShots", int.MaxValue);
 
         StartLevel();
         gameOverScreen.SetActive(false);
@@ -68,6 +72,15 @@ public class MissionDemolition : MonoBehaviour
     {
         uitLevel.text = "Level: " + (level + 1) + " of " + levelMax;
         uitShots.text = "Shots Taken: " + shotsTaken;
+
+        if (bestShots == int.MaxValue)
+        {
+            bestShotsText.text = "Best Shots: N/A";
+        } 
+        else
+        {
+            bestShotsText.text = "Best Shots: " + bestShots;
+        }
     }
 
     // Update is called once per frame
@@ -90,11 +103,22 @@ public class MissionDemolition : MonoBehaviour
         level++;
         if(level >= levelMax)
         {
+            CheckForNewRecord();
             ShowGameOverScreen();
             return;
         }
 
         StartLevel();
+    }
+
+    void CheckForNewRecord()
+    {
+        if(shotsTaken < bestShots)
+        {
+            bestShots = shotsTaken;
+            PlayerPrefs.SetInt("BestShots", bestShots);
+            PlayerPrefs.Save();
+        }
     }
 
     void ShowGameOverScreen()
@@ -111,6 +135,8 @@ public class MissionDemolition : MonoBehaviour
     static public void SHOT_FIRED()
     {
         S.shotsTaken++;
+        PlayerPrefs.SetInt("ShotsFired", S.shotsTaken);
+        PlayerPrefs.Save();
     }
 
     static public GameObject GET_CASTLE()
