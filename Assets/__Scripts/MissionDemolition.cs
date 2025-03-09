@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GameMode
 {
     idle,
     playing,
-    levelEnd
+    levelEnd,
+    gameOver
 }
 
 public class MissionDemolition : MonoBehaviour
@@ -19,6 +21,7 @@ public class MissionDemolition : MonoBehaviour
     public Text uitShots; // uitext_shots text
     public Vector3 castlePos;
     public GameObject[] castles;
+    public GameObject gameOverScreen;
 
     [Header("Dynamic")]
     public int level;
@@ -37,6 +40,7 @@ public class MissionDemolition : MonoBehaviour
         levelMax = castles.Length;
 
         StartLevel();
+        gameOverScreen.SetActive(false);
     }
 
     void StartLevel()
@@ -84,13 +88,24 @@ public class MissionDemolition : MonoBehaviour
     void NextLevel()
     {
         level++;
-        if(level == levelMax)
+        if(level >= levelMax)
         {
-            level = 0;
-            shotsTaken = 0;
+            ShowGameOverScreen();
+            return;
         }
 
         StartLevel();
+    }
+
+    void ShowGameOverScreen()
+    {
+        mode = GameMode.gameOver;
+        gameOverScreen.SetActive(true);
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     static public void SHOT_FIRED()
